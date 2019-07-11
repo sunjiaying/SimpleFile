@@ -416,11 +416,11 @@ static const short _base64DecodingTable[256] = {
         [NSException raise:@"File does not exist" format:@" %@", from];
     }
     if (isDir) {
-        NSString *newDir =  [to stringByAppendingPathComponent:[from lastPathComponent] ];
+        // NSString *newDir =  [to stringByAppendingPathComponent:[from lastPathComponent] ];
         NSError *error;
-        success = [fileManager createDirectoryAtPath:newDir withIntermediateDirectories:YES attributes:nil error:&error];
+        success = [fileManager createDirectoryAtPath:to withIntermediateDirectories:YES attributes:nil error:&error];
         if (!success) {
-            [NSException raise:@"Error creating directory" format:@"%@: %@", [error description], newDir];
+            [NSException raise:@"Error creating directory" format:@"%@: %@", [error description], to];
         }
         NSArray *contents = [fileManager contentsOfDirectoryAtPath:from error:&error];
         if (contents != nil) {
